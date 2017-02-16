@@ -1,0 +1,49 @@
+/*.rating > input:checked + label { 
+color: #00ff00; 
+} 
+.rating:not(:checked) > input { 
+position:absolute; 
+top:-9999px; 
+clip:rect(0,0,0,0); 
+} 
+.rating:not(:checked) > label:before { 
+content: '★ '; 
+} 
+.rating > label.active { 
+color: #00ff00; 
+} 
+.rating > label.active + label { 
+color: #00ff00; 
+}*/
+
+
+.rating--edit, .rating--view { 
+  border: none;
+  float: left;
+}
+
+.rating--edit > input { display: none; } 
+.rating--edit > label:before, .rating--view > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating--edit > label, .rating--view > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating--view > label.active,
+.rating--view > label.active ~ label,
+.rating--edit > input:checked ~ label, /* show gold star when clicked */
+.rating--edit:not(:checked) > label:hover, /* hover current star */
+.rating--edit:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating--edit > input:checked + label:hover, /* hover current star when changing rating */
+.rating--edit > input:checked ~ label:hover,
+.rating--edit > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating--edit > input:checked ~ label:hover ~ label { color: #FFED85;  } 

@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    div.container
+        div.row
+            div.col-md-8
+                div.panel.panel-default 
+                    div.panel-body #{role}
+            div.col-md-4
+                a(href='/logout') выход
+        div.row
+            div.col-md-12
+                a.btn.btn-default.a-new(href='/table/create/') New create
+        div.row
+            div.col-md-12
+                table.table(id='records')
+                    thead
+                        tr
+                            th вопрос
+                            th ответ
+                            th голосование
+                            th
+                    tbody
+                        each record, i in records
+                            tr
+                                td #{record.question}
+                                td #{record.solution}
+                                td
+                                    //- each j in n
+                                    //-     i.fa.fa-star
+                                    div.rating--viewgti
+                                        each q in rating
+                                            if q == record.evaluation 
+                                                label(for='star#{i+1}--#{q}', class='full active', title="Awesome - #{q} stars")
+                                            else
+                                                label(for='star#{i+1}--#{q}', class='full', title="Awesome - #{q} stars")
+                                
+                                //- td #{record.evaluation}
+                                td
+                                    div
+                                        a.btn.btn-default.a-inside.a-edit(href='/table/edit/#{record.id}') Edit

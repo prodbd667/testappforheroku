@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div(style='display:flex;justify-content:center;align-items: center;height: 100vh;')
+    div.container
+      div.row
+        div.col-md-6.col-md-offset-3
+          form.form(method='post', action='/login')
+            div.form-group
+              label(for="loginInput") логин
+              input.form-control(id='loginInput' type='text', value='log' name='login', placeholder='логин')
+            div.form-group
+              label(for="passwordInput") пароль
+              input.form-control(id='passwordInput' type='password', value='pass' name='password', placeholder='пароль')
+            button.btn.btn-default(type='submit') войти

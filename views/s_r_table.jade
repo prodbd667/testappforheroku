@@ -1,0 +1,36 @@
+extends layout
+
+block content
+
+    div
+        div.container.panel.panel-default
+            div.row.panel-heading
+                div.col-md-8
+                    div.label.label-default #{role}
+                div.col-md-4
+                    a(href='/logout') выход
+            div.row.panel-body
+                div.col-md-12
+                    table.table
+                        thead
+                            tr
+                                th вопрос
+                                th ответ
+                                th голосование
+                        tbody
+                            each record, i in records
+                                tr
+                                    td #{record.question}
+                                    td #{record.solution}
+                                    td 
+                                        div.rating--edit(id='#{i+1}')
+                                            each q in rating
+                                                if q == record.evaluation 
+                                                    input(id='star#{i+1}--#{q}', type='radio', name='#{i+1}', value='#{q}', checked='checked')
+                                                    label(for='star#{i+1}--#{q}', class='full', title="Awesome - #{q} stars")
+                                                else
+                                                    input(id='star#{i+1}--#{q}', type='radio', name='#{i+1}', value='#{q}')
+                                                    label(for='star#{i+1}--#{q}', class='full', title="Awesome - #{q} stars")
+                    div.status
+                        div.successful.label.label-success
+                        div.error

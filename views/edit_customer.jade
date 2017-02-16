@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div.container
+        div.row
+            div.col-md-6
+            a(id='back', href='/table') go back
+        div.row
+            div.col-md-6
+                p режим редактирования записи
+        div.row
+            div.col-md-6
+                div(id='#{record.id}')
+                    form.form(id='edit-form')
+                        div.form-group
+                            label(for="questionInput") вопрос
+                            input.form-control(id='questionInput', type='text', name='question', value='#{record.question}')
+                        div.form-group
+                            label(for="solutionInput") решение
+                            input.form-control(id='solutionInput', type='text', name='solution', value='#{record.solution}')
+                        button.btn.btn-default(type='button') сохранить
