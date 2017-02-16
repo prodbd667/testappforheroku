@@ -93,13 +93,6 @@ connection.connect(function (err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-// function getUserDB(username, done) {
-//   connection.query('SELECT * FROM users WHERE username = ? LIMIT 1', [username], function (err, rows, fields) {
-//     if (err) throw err;
-//     done(rows[0]);
-//   });
-// }
-
 app.get('/', function (req, res) {
   console.log('req.session', req.session);
   console.log('res.session', res.session);
@@ -116,37 +109,16 @@ app.get('/logout', function (req, res) {
   });
 });
 // *************************************************************
-var mysql = require('promise-mysql');
-var connection;
-var mysqlconnect = mysql.createConnection({
-  host: config.dbmysql.host,
-  user: config.dbmysql.user,
-  password: config.dbmysql.password,
-  database: config.dbmysql.database
-});
-
-// app.get('/testmysql', function (req, res) {
-//   var id = 1;
-//   mysqlconnect.then(function (conn) {
-//     connection = conn;
-
-//     return connection.query('select * from records where `id`="' + id + '"');
-//   }).then(function (rows) {
-//     // Query the items for a ring that Frodo owns. 
-//     // UPDATE records SET ? WHERE ?
-//     console.log('rows 1', rows);
-//     return connection.query('update records set `edit`="' + 1 + '" where `id`="' + rows[0].id + '"');
-//   }).then(function (rows) {
-//     // Logs out a ring that Frodo owns 
-
-//     console.log('rows 2', rows);
-//     res.send('successful');
-//   }).catch(function (error) {
-//     //logs out the error 
-//     res.send('unsuccessful');
-//     console.log(error);
-//   });
+// var mysql = require('promise-mysql');
+// var connection;
+// var mysqlconnect = mysql.createConnection({
+//   host: config.dbmysql.host,
+//   user: config.dbmysql.user,
+//   password: config.dbmysql.password,
+//   database: config.dbmysql.database
 // });
+
+
 // *************************************************************
 
 app.get('/login', function (req, res) {
@@ -178,117 +150,6 @@ app.post('/login', function (req, res) {
 
 
 app.use('/table', table);
-// app.get('/table', checkAuth, function (req, res) {
-//   console.log(req.session.role);
-//   switch (req.session.role) {
-//     case 'role_first':
-//       connection.query('SELECT * FROM records', function (err, rows, fields) {
-//         if (err) throw err;
-
-
-//         rating = [5, 4, 3, 2, 1];
-//         res.render('f_r_table', { role: 'first role', records: rows, rating: rating })
-//       })
-//       break
-//     case 'role_second':
-//       connection.query('SELECT * FROM records', function (err, rows, fields) {
-//         if (err) throw err;
-
-//         rating = [5, 4, 3, 2, 1];
-//         res.render('s_r_table', { role: 'second role', records: rows, rating: rating })
-//       })
-//       break
-//     default:
-//       console.log('test');
-//       break
-//   }
-// });
-
-// app.post('/table/voting', function (req, res) {
-//   // var sqlQuery = ;
-
-//   console.log(req.body);
-//   connection.query("UPDATE records SET ? WHERE ?", [{ evaluation: req.body.evaluation }, { id: req.body.id }], function (error, data) {
-//     if (error) throw error;
-
-//     res.json(data);
-//   });
-// });
-
-// app.get('/table/edit/:id', function (req, res) {
-//   // var sqlQuery = ;
-//   console.log(req.params);
-//   // connection.query("UPDATE records SET ? WHERE ?", [{ evaluation: req.body.evaluation }, { id: req.body.id }], function (error, data) {
-//   //   if (error) throw error;
-
-//   //   res.json(data);
-//   // });
-//   var id = req.params.id;
-//   console.log(id);
-//   // req.getConnection(function (err, connection) {
-//   connection.query('SELECT * FROM records WHERE id = ?', [id], function (err, row) {
-//     console.log('row', row[0]);
-//     if (err)
-//       console.log("Error Selecting : %s ", err);
-//     res.render('edit_customer', { page_title: "Edit Customers - Node.js", record: row[0] });
-//   });
-//   // });
-// });
-
-// app.post('/table/edit', function (req, res) {
-//   console.log('req.body', req.body);
-
-//   var id = req.body.id;
-//   var question = req.body.question;
-//   var solution = req.body.solution;
-//   mysqlconnect.then(function (conn) {
-//     connection = conn;
-
-//     // return connection.query('select * from records where `id`="' + id + '"');
-//     return connection.query('update records set `question`="' + question + '",`solution`="' + solution + '" where `id`="' + id + '"');
-//   }).then(function (rows) {
-//     console.log('rows 2', rows);
-//     res.json('_successful_');
-//   }).catch(function (error) {
-//     //logs out the error 
-//     res.send('unsuccessful');
-//     console.log(error);
-//   });
-// });
-
-// app.get('/table/create', function (req, res) {
-//   res.render('create');
-// });
-
-// app.post('/table/create', function (req, res) {
-//   console.log('/table/create', req.body);
-
-//   var question = req.body.question;
-//   var solution = req.body.solution;
-//   mysqlconnect.then(function (conn) {
-//     connection = conn;
-    
-//     return connection.query('insert into records set `question`="' + question + '",`solution`="' + solution + '"');
-//   }).then(function (rows) {
-//     res.json('_successful_');
-//   }).catch(function (error) {
-//     //logs out the error 
-//     res.send('unsuccessful');
-//     console.log(error);
-//   });
-// });
-
-// app.get('/test', function (req, res) {
-//   // req.session.numberOfVisits = req.session.numberOfVisits + 1 || 1;
-//   // res.send("visits " + req.session.numberOfVisits);
-
-//   var sqlQuery = "SELECT * FROM users";
-//   connection.query(sqlQuery, function (error, data) {
-//     if (error) throw error;
-
-//     res.json(data);
-//   });
-// });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
