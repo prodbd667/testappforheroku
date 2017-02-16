@@ -6,7 +6,6 @@ This application supports the [Getting Started with Node on Heroku](https://devc
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
 $ git clone https://github.com/prodbd667/testappforheroku.git # or clone your own fork
